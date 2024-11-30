@@ -26,6 +26,7 @@ Write ten (10) user stories for a book-borrowing website for a library. Write it
 8) As a new user, I want to be able to sign up on the library website, so that I can create an account with the library.
 9) as an exisiting user, I want to be able to have a history page, so that I can look through a list of books I have previously borrowed.
 10) As a system administrator, I want to be able to have an administrative view, so that I have rights to grant/prevent certain users from borrowing books.
+11) As a user, I want to have a Scan function, so that I can perform a self-checkout of the books that I want to borrow.
 
 ```
 
@@ -33,7 +34,82 @@ Question 3:
 Define [Acceptance Criteria](https://resources.scrumalliance.org/Article/need-know-acceptance-criteria) for 3 to 5 user stories out of the 10 user stories you have defined.
 
 ```
-Your answers here
+As an exisiting user, I want to be able to login to the library website, so that I can borrow books.
+
+ -Given user enters the login page 
+  When they enter a valid email username and password
+  Then the user is successfully logged in and redirected to the Home Page.
+
+ -Given user enters the login page
+  When they enter an invalid email username
+  And/Or
+  When they enter an invalid password  
+  Then an error message "Wrong username or password" is presented to the user
+
+ -Given user enters the login page
+  When they click on Google SSO
+  Or 
+  When they click on Microsoft SSO
+  Or
+  When they click on AppleID SSO 
+  Then user is redirected to the respective SSO login page to perform SSO login
+ 
+ -Given user has the respective SSO already signed in
+  When the respective SSO login is clicked
+  Then login is performed automatically using the SSO credentials
+
+ -Given user enters the login page and forgets their password
+  When they click on the "Forget password" button hyperlink text
+  Then user is redirected to the password recovery page
+  And
+  Then uses their account's registered email to perform the password recovery
+ 
+  
+As a system administrator, I want to be able to have an administrative view, so that I have rights to grant/prevent certain users from borrowing books.
+
+ -Given system administrator enters the administrative page 
+  When they search for a user by username or email address
+  Then the user's email address
+  And 
+  Then the user's First and Last Name
+  And 
+  Then the user's Borrwing Status 
+  And 
+  Then the list of books currently on loan by the user
+  And
+  Then the list of books previously borrowed by the user is presented to the systme administrator
+
+ -Given User A's details returned to the system administrator after searching
+  When they click on the "Ban" button at the end of the row of the user's details
+  Then User A's Borrowing Status changes from "Allowed" to "Banned"
+  And
+  Then the text of the "Ban" button changes to "Unban"
+
+ -Given User B's details returned to the system administrator after searching
+  When they click on the "Unban" button at the end of the row of the user's details
+  Then User B's Borrowing Status changes from "Banned" to "Allowed"
+  And
+  Then the text of the "Unban" button changes to "Ban" 
+  
+As a user, I want to have a Scan function, so that I can perform a self-checkout of the books that I want to borrow.
+ 
+ -Given Scan function 
+  When scanning barcodes 
+  Or
+  When scanning QR codes
+  Then the barcode or QR code can be read correctly
+ 
+ -Given user is logging in from a local computer within the library
+  When user uses the Scan function
+  Then the system's connected camera/scanner is initialied and ready to scan 
+  
+ -Given user is logging in from their mobile device
+  When the user uses the Scan function
+  Then Camera permissions are checked and requested if not present
+
+
+
+
 ```
 
 
